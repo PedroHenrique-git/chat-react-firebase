@@ -38,29 +38,28 @@ const Home = function () {
   }, []);
 
   return (
-    <>
-      <button type="button" onClick={handleLogout}>
-        logout
-      </button>
-      <form onSubmit={(e) => handleSubmitMessage(e)}>
-        <label htmlFor="message">
-          Digite sua mensagem:
+    <div className="home">
+      <div className="home-content">
+        <button type="button" onClick={handleLogout} className="logout-button">
+          logout
+        </button>
+        <div className="messages-wrap" />
+        <form
+          onSubmit={(e) => handleSubmitMessage(e)}
+          className="form-insert-message"
+        >
           <input
             type="text"
             name="message"
             id="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            placeholder="Insert your message here"
           />
-        </label>
-        <button type="submit">Enviar</button>
-      </form>
-      <ul>
-        {messages.map((msg) => (
-          <li>{msg.message}</li>
-        ))}
-      </ul>
-    </>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

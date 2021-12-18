@@ -12,11 +12,17 @@ const Login = function () {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <button type="button" onClick={() => handleLogin()}>
-        click here
-      </button>
+    <div className="login">
+      <div className="login-content">
+        <h1 className="title">Login required to proceed</h1>
+        <button
+          type="button"
+          onClick={() => handleLogin()}
+          className="login-button"
+        >
+          Click here to login
+        </button>
+      </div>
     </div>
   );
 };

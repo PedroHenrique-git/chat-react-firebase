@@ -1,4 +1,18 @@
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  getDocs,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  // eslint-disable-next-line prettier/prettier
+  QuerySnapshot
+} from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
 import { auth, database } from '../../config/firebase';
 import { MessageType } from '../../domain/messages/messages';
 
@@ -16,6 +30,25 @@ export default () => ({
     }
   },
 
+  observerMessages(callback: (snapshot: QuerySnapshot<DocumentData>) => void) {
+    const myQuery = query(
+      collection(database, 'messages'),
+      orderBy('created', 'asc'),
+      limit(25),
+    );
+    const unsubscribe = onSnapshot(myQuery, callback);
+    return unsubscribe;
+  },
+
+  async deleteMessage(id: string) {
+    try {
+      const docRef = doc(database, `messages/${id}`);
+      await deleteDoc(docRef);
+    } catch (err) {
+      throw new Error('could not delete a message');
+    }
+  },
+
   async sendMessage(message: string) {
     try {
       const user = auth.currentUser;
@@ -24,7 +57,9 @@ export default () => ({
           name: user?.displayName,
           email: user?.email,
           photo: user?.photoURL,
+          uid: user?.uid,
         },
+        messageId: uuidv4(),
         message,
         created: new Date().getTime(),
       });

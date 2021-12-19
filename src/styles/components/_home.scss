@@ -42,10 +42,81 @@
     }
 
     .messages-wrap {
-      border: 1px solid $white;
+      // border: 1px solid $white;
       border-radius: 10px;
       grid-row: 2;
       grid-column: span 2;
+      padding: 15px;
+      max-height: 400px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        border-radius: 10px;
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: #888;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .message {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        &.currentUser {
+          justify-content: flex-end;
+        }
+
+        &.newUser {
+          justify-content: flex-start;
+        }
+
+        &:not(:first-of-type) {
+          margin-top: 20px;
+        }
+
+        img {
+          border-radius: 50%;
+          height: 35px;
+          width: 35px;
+        }
+
+        .delete-message-btn {
+          background: $red;
+          color: $white;
+          width: 25px;
+          height: 25px;
+          border-radius: 50px;
+          text-align: center;
+          border: none;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+
+        p {
+          color: $white;
+          background: $message-background-1;
+          border-radius: 10px;
+          padding: 10px;
+          word-break: break-all;
+        }
+
+        &.newUser p {
+          color: $dark-blue;
+          background: $color-text-chat;
+        }
+      }
     }
 
     .form-insert-message {
@@ -77,6 +148,10 @@
         cursor: pointer;
         padding: 1rem;
         font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
 
         &:hover {
           opacity: .8;

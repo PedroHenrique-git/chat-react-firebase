@@ -6,7 +6,7 @@ import { MessageType } from '../../domain/messages/messages';
 import loginService from '../../services/login/loginService';
 import messageService from '../../services/messages/messageService';
 
-const Home = function () {
+const Chat = function () {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [currentTime, setCurrentTime] = useState(new Date().getTime());
@@ -106,6 +106,7 @@ const Home = function () {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Insert your message here"
+            autoComplete="off"
           />
           <button type="submit">
             <MdSend size={32} />
@@ -116,4 +117,4 @@ const Home = function () {
   );
 };
 
-export default Home;
+export default Chat;

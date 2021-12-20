@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Home from './components/Home/Home';
+import Home from './components/Chat';
 import Login from './components/Login';
 import loginService from './services/login/loginService';
 

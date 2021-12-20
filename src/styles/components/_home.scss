@@ -153,6 +153,10 @@
         justify-content: center;
         width: 80px;
 
+        @media (max-width: 640px) {
+          padding: .5rem;
+        }
+
         &:hover {
           opacity: .8;
           transition: opacity 300ms ease-in-out;
